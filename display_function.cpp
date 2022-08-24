@@ -14,7 +14,7 @@ void displayDays(short month, short year){
         for (int j = 0; j < 7; ++j)
         {
             short day = days[i][j];
-            if (!validDay(day, month, year)) cout << "    ";     // 4 spaces
+            if (!validDay(day, month, year)) cout << "    ";    // 4 spaces
             else if (day <= 9) cout << day << "   ";            // 3 spaces
             else cout << day << "  ";                           // 2 spaces;
         }
