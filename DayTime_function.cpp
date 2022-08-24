@@ -4,9 +4,10 @@
 
 
 vector <string> stringMonth = {"", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-short days[5][7];
+short days[6][7];
 short nonLeapYear[13];
 short    LeapYear[13];
+int days_of_month[12] = {31, 28, 31, 30, 31, 31, 30, 31, 30, 31, 30, 31};    //number of days in a month
 
 struct __today
 {
@@ -26,8 +27,6 @@ void getToday(){
 }
 
 void initDaysOfMonth(){
-    int days_of_month[12] = {31, 28, 31, 30, 31, 31, 30, 31, 30, 31, 30, 31};    //number of days in a month
-
     LeapYear[0] = 0; LeapYear[1] = 31;
     nonLeapYear[0] = 0;
 
@@ -63,9 +62,18 @@ void initDays(short month, short year){
     int step2 = step1 + ((year % 4 == 0)? LeapYear[month - 1] : nonLeapYear[month - 1]);
     short stepFinal = step2 % 7;
 
-    for (int i = 0; i < 5; ++i)
+    for (int i = 0; i < 6; ++i)
         for (int j = 0; j < 7; ++j)
         {
             days[i][j] = 7 * i + j + 1 - stepFinal;
         }
+}
+
+bool validDay (short day, short month, short year){
+    if (day <= 0) return false;
+    if (month == 2){
+        if (year % 4) return (day <= 28);
+        return (day <= 29);
+    }
+    return day <= days_of_month[month - 1];
 }

@@ -9,14 +9,14 @@ void displayInstruction(){
 
 void displayDays(short month, short year){
     initDays(month, year);
-    for (int i = 0; i < 5; ++i)
+    for (int i = 0; i < 6; ++i)
     {
         for (int j = 0; j < 7; ++j)
         {
             short day = days[i][j];
-            if (day <= 0) cout << "    ";               // 4 spaces
-            else if (day <= 9) cout << day << "   ";    // 3 spaces
-            else cout << day << "  ";                   // 2 spaces;
+            if (!validDay(day, month, year)) cout << "    ";     // 4 spaces
+            else if (day <= 9) cout << day << "   ";            // 3 spaces
+            else cout << day << "  ";                           // 2 spaces;
         }
         cout << endl;
     }
@@ -33,6 +33,6 @@ void displayCalandar(short month, short year){
     cout << "M   T   W   T   F   S   S   "<<endl;
     
     displayDays(month, year);
-    cout << "\n\n";
+    cout << "\n";
     displayInstruction();
 }
